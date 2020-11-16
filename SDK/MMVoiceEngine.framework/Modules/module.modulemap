@@ -1,0 +1,6 @@
+framework module MMVoiceEngine {
+  umbrella header "MMVoiceEngine.h"
+
+  export *
+  module * { export * }
+}

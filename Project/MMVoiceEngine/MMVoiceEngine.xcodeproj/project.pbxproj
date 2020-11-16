@@ -1,0 +1,398 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F611630E255B693200D1453E /* MMSpeechRecognizerConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = F611630C255B693200D1453E /* MMSpeechRecognizerConfig.h */; };
+		F611630F255B693200D1453E /* MMSpeechRecognizerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = F611630D255B693200D1453E /* MMSpeechRecognizerConfig.m */; };
+		F6116311255B6D9F00D1453E /* MMSpeechRecognizerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F6116310255B6D9F00D1453E /* MMSpeechRecognizerDelegate.h */; };
+		F6DFEA7F255CCFC20040F9C3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6DFEA7E255CCFC20040F9C3 /* AVFoundation.framework */; };
+		F6F15C31255A5D6000778245 /* MMVoiceEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = F6F15C2F255A5D6000778245 /* MMVoiceEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F6F15C3C255A5F1100778245 /* MMSpeechRecognizer.h in Headers */ = {isa = PBXBuildFile; fileRef = F6F15C3A255A5F1100778245 /* MMSpeechRecognizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F6F15C3D255A5F1100778245 /* MMSpeechRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F15C3B255A5F1100778245 /* MMSpeechRecognizer.m */; };
+		F6F15C42255A5FE600778245 /* MMSpeechSynthesizer.h in Headers */ = {isa = PBXBuildFile; fileRef = F6F15C40255A5FE600778245 /* MMSpeechSynthesizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F6F15C43255A5FE600778245 /* MMSpeechSynthesizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F15C41255A5FE600778245 /* MMSpeechSynthesizer.m */; };
+		F6F15C45255A601800778245 /* MMSpeechRecognizer.m in Headers */ = {isa = PBXBuildFile; fileRef = F6F15C3B255A5F1100778245 /* MMSpeechRecognizer.m */; settings = {ATTRIBUTES = (Public, ); }; };
+		F6F15C46255A601800778245 /* MMSpeechSynthesizer.m in Headers */ = {isa = PBXBuildFile; fileRef = F6F15C41255A5FE600778245 /* MMSpeechSynthesizer.m */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F611630C255B693200D1453E /* MMSpeechRecognizerConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMSpeechRecognizerConfig.h; sourceTree = "<group>"; };
+		F611630D255B693200D1453E /* MMSpeechRecognizerConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMSpeechRecognizerConfig.m; sourceTree = "<group>"; };
+		F6116310255B6D9F00D1453E /* MMSpeechRecognizerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMSpeechRecognizerDelegate.h; sourceTree = "<group>"; };
+		F6DFEA7E255CCFC20040F9C3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F6F15C2C255A5D6000778245 /* MMVoiceEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MMVoiceEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6F15C2F255A5D6000778245 /* MMVoiceEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMVoiceEngine.h; sourceTree = "<group>"; };
+		F6F15C30255A5D6000778245 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6F15C3A255A5F1100778245 /* MMSpeechRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMSpeechRecognizer.h; sourceTree = "<group>"; };
+		F6F15C3B255A5F1100778245 /* MMSpeechRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMSpeechRecognizer.m; sourceTree = "<group>"; };
+		F6F15C40255A5FE600778245 /* MMSpeechSynthesizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMSpeechSynthesizer.h; sourceTree = "<group>"; };
+		F6F15C41255A5FE600778245 /* MMSpeechSynthesizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMSpeechSynthesizer.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F6F15C29255A5D6000778245 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6DFEA7F255CCFC20040F9C3 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F6DFEA7D255CCFC20040F9C3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F6DFEA7E255CCFC20040F9C3 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F6F15C22255A5D6000778245 = {
+			isa = PBXGroup;
+			children = (
+				F6F15C2E255A5D6000778245 /* MMVoiceEngine */,
+				F6F15C2D255A5D6000778245 /* Products */,
+				F6DFEA7D255CCFC20040F9C3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F6F15C2D255A5D6000778245 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F6F15C2C255A5D6000778245 /* MMVoiceEngine.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F6F15C2E255A5D6000778245 /* MMVoiceEngine */ = {
+			isa = PBXGroup;
+			children = (
+				F6F15C2F255A5D6000778245 /* MMVoiceEngine.h */,
+				F6F15C30255A5D6000778245 /* Info.plist */,
+				F6F15C3A255A5F1100778245 /* MMSpeechRecognizer.h */,
+				F6F15C3B255A5F1100778245 /* MMSpeechRecognizer.m */,
+				F6116310255B6D9F00D1453E /* MMSpeechRecognizerDelegate.h */,
+				F611630C255B693200D1453E /* MMSpeechRecognizerConfig.h */,
+				F611630D255B693200D1453E /* MMSpeechRecognizerConfig.m */,
+				F6F15C40255A5FE600778245 /* MMSpeechSynthesizer.h */,
+				F6F15C41255A5FE600778245 /* MMSpeechSynthesizer.m */,
+			);
+			path = MMVoiceEngine;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F6F15C27255A5D6000778245 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6F15C46255A601800778245 /* MMSpeechSynthesizer.m in Headers */,
+				F6F15C45255A601800778245 /* MMSpeechRecognizer.m in Headers */,
+				F611630E255B693200D1453E /* MMSpeechRecognizerConfig.h in Headers */,
+				F6F15C42255A5FE600778245 /* MMSpeechSynthesizer.h in Headers */,
+				F6F15C3C255A5F1100778245 /* MMSpeechRecognizer.h in Headers */,
+				F6116311255B6D9F00D1453E /* MMSpeechRecognizerDelegate.h in Headers */,
+				F6F15C31255A5D6000778245 /* MMVoiceEngine.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F6F15C2B255A5D6000778245 /* MMVoiceEngine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6F15C34255A5D6000778245 /* Build configuration list for PBXNativeTarget "MMVoiceEngine" */;
+			buildPhases = (
+				F6F15C27255A5D6000778245 /* Headers */,
+				F6F15C28255A5D6000778245 /* Sources */,
+				F6F15C29255A5D6000778245 /* Frameworks */,
+				F6F15C2A255A5D6000778245 /* Resources */,
+				F6F15C39255A5E2D00778245 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MMVoiceEngine;
+			productName = MMVoiceEngine;
+			productReference = F6F15C2C255A5D6000778245 /* MMVoiceEngine.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F6F15C23255A5D6000778245 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					F6F15C2B255A5D6000778245 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+				};
+			};
+			buildConfigurationList = F6F15C26255A5D6000778245 /* Build configuration list for PBXProject "MMVoiceEngine" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F6F15C22255A5D6000778245;
+			productRefGroup = F6F15C2D255A5D6000778245 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F6F15C2B255A5D6000778245 /* MMVoiceEngine */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F6F15C2A255A5D6000778245 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F6F15C39255A5E2D00778245 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\ncd ${PROJECT_DIR}/../../\nmkdir -p SDK\ncd SDK\n\ncp -rf ${BUILD_DIR}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/${PRODUCT_NAME}.framework ./\niphoneosFile=${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\niphonesimulatorFile=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\nif [ -f \"$iphoneosFile\" ] && [ -f \"$iphonesimulatorFile\" ]; then\nlipo -create \"$iphoneosFile\" \"$iphonesimulatorFile\" -output ./${PRODUCT_NAME}.framework/${PRODUCT_NAME}\nfi\n\nrm -rf ./${PRODUCT_NAME}.framework/_CodeSignature\n\n\n\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F6F15C28255A5D6000778245 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F611630F255B693200D1453E /* MMSpeechRecognizerConfig.m in Sources */,
+				F6F15C43255A5FE600778245 /* MMSpeechSynthesizer.m in Sources */,
+				F6F15C3D255A5F1100778245 /* MMSpeechRecognizer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F6F15C32255A5D6000778245 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F6F15C33255A5D6000778245 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F6F15C35255A5D6000778245 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8C2CLWL33B;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MMVoiceEngine/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = MengxiangPersonal.MMVoiceEngine;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F6F15C36255A5D6000778245 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8C2CLWL33B;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MMVoiceEngine/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = MengxiangPersonal.MMVoiceEngine;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F6F15C26255A5D6000778245 /* Build configuration list for PBXProject "MMVoiceEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6F15C32255A5D6000778245 /* Debug */,
+				F6F15C33255A5D6000778245 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F6F15C34255A5D6000778245 /* Build configuration list for PBXNativeTarget "MMVoiceEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6F15C35255A5D6000778245 /* Debug */,
+				F6F15C36255A5D6000778245 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F6F15C23255A5D6000778245 /* Project object */;
+}
