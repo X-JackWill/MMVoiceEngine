@@ -8,11 +8,10 @@
 #import "ViewController.h"
 #import <MMVoiceEngine/MMVoiceEngine.h>
 
-@interface ViewController ()
+@interface ViewController ()<MMSpeechRecognizerDelegate>
 
 @property (nonatomic, strong) UIButton *startBtn;
 @property (nonatomic, strong) UITextView *textView;
-
 
 @end
 
@@ -70,11 +69,58 @@
     sender.selected = !sender.selected;
     
     if (sender.selected) {
+        [MMSpeechRecognizer sharedInstance].delegate = self;
         [[MMSpeechRecognizer sharedInstance] start];
     }
     else {
         [[MMSpeechRecognizer sharedInstance] stop];
     }
+}
+
+#pragma mark - MMSpeechRecognizerDelegate
+
+/*!
+ *  开始录音回调
+ *
+ */
+- (void)onStart
+{
+    NSLog(@"%s",__func__);
+    
+    self.startBtn.enabled = YES;
+    [self.startBtn setTitle:@"Stop Recording" forState:UIControlStateNormal];
+}
+
+/*!
+ *
+ *
+ */
+- (void)onStop:(NSError *)error
+{
+    NSLog(@"%s",__func__);
+    
+    self.startBtn.enabled = YES;
+    [self.startBtn setTitle:@"Start Recording" forState:UIControlStateNormal];
+}
+
+/*!
+ *
+ *
+ */
+- (void)onCompleted:(NSError *)error finishing:(BOOL)isFinishing
+{
+    NSLog(@"%s",__func__);
+
+}
+
+/*!
+ *
+ *
+ */
+- (void)result:(SFSpeechRecognitionResult * _Nullable)result
+{
+    NSLog(@"%s",__func__);
+
 }
 
 @end

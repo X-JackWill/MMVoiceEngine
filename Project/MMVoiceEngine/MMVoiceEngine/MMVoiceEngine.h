@@ -15,3 +15,4 @@ FOUNDATION_EXPORT const unsigned char MMVoiceEngineVersionString[];
 
 #import <MMVoiceEngine/MMSpeechRecognizer.h>
 #import <MMVoiceEngine/MMSpeechSynthesizer.h>
+#import <MMVoiceEngine/MMSpeechRecognizerDelegate.h>

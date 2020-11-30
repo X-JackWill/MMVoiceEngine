@@ -48,55 +48,50 @@ static dispatch_once_t onceToken;
     return _config;
 }
 
-- (void)start
+// Start. Private function.
+- (void)reStart
 {
-    // Cancel the previous task if it's running.
-    if (self.recognitionTask) {
-        [self.recognitionTask cancel];
-    }
-    self.recognitionTask = nil;
-
-    // Configure the audio session for the app.
-    NSError *error = nil;
-    [AVAudioSession.sharedInstance setCategory:AVAudioSessionCategoryRecord withOptions:AVAudioSessionCategoryOptionDuckOthers error:&error];
-    if (error)
-    {
-        [self onError:error];
-        return;
-    }
-    [AVAudioSession.sharedInstance setActive:YES withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&error];
-    if (error)
-    {
-        [self onError:error];
-        return;
-    }
-
-    // Create and configure the speech recognition request.
-    self.recognitionRequest = [[SFSpeechAudioBufferRecognitionRequest alloc] init];
-    self.recognitionRequest.taskHint = SFSpeechRecognitionTaskHintConfirmation;
-    
-    // Keep speech recognition data on device
-    if (@available(iOS 13, *)) {
-        self.recognitionRequest.requiresOnDeviceRecognition = NO;
-    }
-
-    // Create a recognition task for the speech recognition session.
-    // Keep a reference to the task so that it can be canceled.
-    __weak typeof(self)weakSelf = self;
-    self.recognitionTask = [self.speechRecognizer recognitionTaskWithRequest:self.recognitionRequest resultHandler:^(SFSpeechRecognitionResult * _Nullable result, NSError * _Nullable error) {
-        
-        NSLog(@"Recognized voice: %@",result.bestTranscription.formattedString);
-        NSLog(@"Recognized voice: %@",result.transcriptions);
-        NSLog(@"Recognized error: %@",error);
-
-        if (weakSelf.recognitionTask.isFinishing) {
-            NSLog(@"Recognized finishing: %d",weakSelf.recognitionTask.isFinishing);
+    // Checking the authorization Status
+    [MMSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
+        if (status == SFSpeechRecognizerAuthorizationStatusAuthorized)
+        {
+            [self resetRecognitionTask];
+            [self startAudioEngine];
+        }
+        else
+        {
+            [self stopWithError:[NSError errorWithDomain:[NSString stringWithFormat:@"Authorization :%ld",(long)status] code:-1 userInfo:nil]];
         }
     }];
+}
+
+// Start event.
+- (void)start
+{
+    [self startCallback];
+    
+    [self reStart];
+}
+
+// Stop audioEngine. Private function.
+- (void)stopAudioEngine
+{
+    if (self.audioEngine && self.audioEngine.isRunning) {
+        [self.audioEngine stop];
+        [self.recognitionRequest endAudio];
+    }
+}
+// Start audioEngine. Private function.
+- (void)startAudioEngine
+{
+    [self stopAudioEngine];
     
     // Configure the microphone input.
     AVAudioInputNode *inputNode = self.audioEngine.inputNode;
+    [inputNode removeTapOnBus:0];
     AVAudioFormat *recordingFormat = [inputNode outputFormatForBus:0];
+    __weak typeof(self)weakSelf = self;
+    NSError *error = nil;
     [inputNode installTapOnBus:0 bufferSize:1024 format:recordingFormat block:^(AVAudioPCMBuffer * _Nonnull buffer, AVAudioTime * _Nonnull when) {
         if (weakSelf.recognitionRequest) {
             [weakSelf.recognitionRequest appendAudioPCMBuffer:buffer];
@@ -106,17 +101,23 @@ static dispatch_once_t onceToken;
     [self.audioEngine startAndReturnError:&error];
     if (error)
     {
-        [self onError:error];
+        [self stopWithError:error];
         return;
     }
-    
-    
 }
 
+// Stop event. Private function.
+- (void)stopWithError:(NSError *)error
+{
+    [self stopAudioEngine];
+    [self stopCallback:error];
+}
+
+// Stop event. Public function.
 - (void)stop
 {
-    [self.audioEngine stop];
-    [self.recognitionRequest endAudio];
+    [self stopAudioEngine];
+    [self stopCallback:nil];
 }
 
 + (SFSpeechRecognizerAuthorizationStatus)authorizationStatus
@@ -140,16 +141,77 @@ static dispatch_once_t onceToken;
     
 }
 
-#pragma mark - 回调
+#pragma mark - call back
 
-- (void)onError:(NSError *)error
+- (void)startCallback
 {
-//    if ([self.delegate respondsToSelector:@selector(onError:)]) {
-//        [self.delegate onError:error];
-//    }
+    if ([self.delegate respondsToSelector:@selector(onStart)]) {
+        [self.delegate onStart];
+    }
 }
 
+- (void)stopCallback:(NSError *)error
+{
+    if ([self.delegate respondsToSelector:@selector(onStop:)]) {
+        [self.delegate onStop:error];
+    }
+}
 
+- (void)resultCallback:(SFSpeechRecognitionResult * _Nullable)result
+{
+    if ([self.delegate respondsToSelector:@selector(resultCallback:)]) {
+        [self.delegate result:result];
+    }
+}
+
+#pragma mark - private
+
+- (void)resetRecognitionTask
+{
+    // Cancel the previous task if it's running.
+    if (self.recognitionTask) {
+        [self.recognitionTask cancel];
+    }
+    self.recognitionTask = nil;
+    
+    // Configure the audio session for the app.
+    NSError *error = nil;
+    [AVAudioSession.sharedInstance setCategory:AVAudioSessionCategoryRecord withOptions:AVAudioSessionCategoryOptionDuckOthers error:&error];
+    if (error)
+    {
+        [self stopWithError:error];
+        return;
+    }
+    [AVAudioSession.sharedInstance setActive:YES withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&error];
+    if (error)
+    {
+        [self stopWithError:error];
+        return;
+    }
+
+    // Create and configure the speech recognition request.
+    self.recognitionRequest = [[SFSpeechAudioBufferRecognitionRequest alloc] init];
+    self.recognitionRequest.taskHint = SFSpeechRecognitionTaskHintConfirmation;
+    
+    // Keep speech recognition data on device
+    if (@available(iOS 13, *)) {
+        self.recognitionRequest.requiresOnDeviceRecognition = NO;
+    }
+
+    // Create a recognition task for the speech recognition session.
+    // Keep a reference to the task so that it can be canceled.
+    __weak typeof(self)weakSelf = self;
+    self.recognitionTask = [self.speechRecognizer recognitionTaskWithRequest:self.recognitionRequest resultHandler:^(SFSpeechRecognitionResult * _Nullable result, NSError * _Nullable error) {
+        
+        NSLog(@"Recognized voice: %@",result.bestTranscription.formattedString);
+        NSLog(@"Recognized error: %@",error);
+        NSLog(@"Recognized finishing: %d",weakSelf.recognitionTask.isFinishing);
+
+        [weakSelf resultCallback:result];
+        
+        [weakSelf resetRecognitionTask];
+    }];
+}
 
 #pragma mark - get
 
@@ -177,3 +239,8 @@ static dispatch_once_t onceToken;
 //AVAudioFormat     // 音频的抽象类
 //AVAudioInputNode  // 音频节点
 //AVAudioPCMBuffer  //
+
+
+/// 错误码
+// 203/201 本次识别任务完成，未识别到任何语音
+// 216  几次203/201之后报216，报216时recognitionTask.isFinishing=NO。程序再无反应。

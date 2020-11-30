@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F611630E255B693200D1453E /* MMSpeechRecognizerConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = F611630C255B693200D1453E /* MMSpeechRecognizerConfig.h */; };
+		F611630E255B693200D1453E /* MMSpeechRecognizerConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = F611630C255B693200D1453E /* MMSpeechRecognizerConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F611630F255B693200D1453E /* MMSpeechRecognizerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = F611630D255B693200D1453E /* MMSpeechRecognizerConfig.m */; };
-		F6116311255B6D9F00D1453E /* MMSpeechRecognizerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F6116310255B6D9F00D1453E /* MMSpeechRecognizerDelegate.h */; };
+		F6116311255B6D9F00D1453E /* MMSpeechRecognizerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F6116310255B6D9F00D1453E /* MMSpeechRecognizerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6DFEA7F255CCFC20040F9C3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6DFEA7E255CCFC20040F9C3 /* AVFoundation.framework */; };
 		F6F15C31255A5D6000778245 /* MMVoiceEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = F6F15C2F255A5D6000778245 /* MMVoiceEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6F15C3C255A5F1100778245 /* MMSpeechRecognizer.h in Headers */ = {isa = PBXBuildFile; fileRef = F6F15C3A255A5F1100778245 /* MMSpeechRecognizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -96,10 +96,10 @@
 			files = (
 				F6F15C46255A601800778245 /* MMSpeechSynthesizer.m in Headers */,
 				F6F15C45255A601800778245 /* MMSpeechRecognizer.m in Headers */,
-				F611630E255B693200D1453E /* MMSpeechRecognizerConfig.h in Headers */,
 				F6F15C42255A5FE600778245 /* MMSpeechSynthesizer.h in Headers */,
-				F6F15C3C255A5F1100778245 /* MMSpeechRecognizer.h in Headers */,
 				F6116311255B6D9F00D1453E /* MMSpeechRecognizerDelegate.h in Headers */,
+				F611630E255B693200D1453E /* MMSpeechRecognizerConfig.h in Headers */,
+				F6F15C3C255A5F1100778245 /* MMSpeechRecognizer.h in Headers */,
 				F6F15C31255A5D6000778245 /* MMVoiceEngine.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

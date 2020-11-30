@@ -17,4 +17,9 @@
     return self;
 }
 
++ (MMSpeechRecognizerConfig *)defaultConfig
+{
+    return [[MMSpeechRecognizerConfig alloc] init];
+}
+
 @end
