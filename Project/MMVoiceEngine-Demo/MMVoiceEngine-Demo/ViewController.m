@@ -21,7 +21,7 @@
     [super viewDidLayoutSubviews];
     
     self.startBtn.frame = CGRectMake(10, CGRectGetHeight(self.view.frame)-40-10, CGRectGetWidth(self.view.frame)-20, 40);
-    self.textView.frame = CGRectMake(10, CGRectGetMinY(self.view.frame), CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame)*0.5-50);
+    self.textView.frame = CGRectMake(10, 20, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame)*0.5-70);
 }
 
 - (void)viewDidLoad {
@@ -35,6 +35,8 @@
     [self.view addSubview:self.startBtn];
     
     self.textView = [[UITextView alloc] init];
+    self.textView.textColor = [UIColor whiteColor];
+    self.textView.backgroundColor = [UIColor darkGrayColor];
     [self.view addSubview:self.textView];
 }
 
@@ -107,20 +109,10 @@
  *
  *
  */
-- (void)onCompleted:(NSError *)error finishing:(BOOL)isFinishing
-{
-    NSLog(@"%s",__func__);
-
-}
-
-/*!
- *
- *
- */
 - (void)result:(SFSpeechRecognitionResult * _Nullable)result
 {
     NSLog(@"%s",__func__);
-
+    self.textView.text = result.bestTranscription.formattedString;
 }
 
 @end

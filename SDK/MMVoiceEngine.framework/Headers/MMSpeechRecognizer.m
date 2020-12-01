@@ -65,7 +65,7 @@ static dispatch_once_t onceToken;
     }];
 }
 
-// Start event.
+// Start event. Public function.
 - (void)start
 {
     [self startCallback];
@@ -78,6 +78,7 @@ static dispatch_once_t onceToken;
 {
     if (self.audioEngine && self.audioEngine.isRunning) {
         [self.audioEngine stop];
+        [self.audioEngine.inputNode removeTapOnBus:0];
         [self.recognitionRequest endAudio];
     }
 }
@@ -120,6 +121,7 @@ static dispatch_once_t onceToken;
     [self stopCallback:nil];
 }
 
+// Authorization
 + (SFSpeechRecognizerAuthorizationStatus)authorizationStatus
 {
     return [SFSpeechRecognizer authorizationStatus];
@@ -159,7 +161,7 @@ static dispatch_once_t onceToken;
 
 - (void)resultCallback:(SFSpeechRecognitionResult * _Nullable)result
 {
-    if ([self.delegate respondsToSelector:@selector(resultCallback:)]) {
+    if ([self.delegate respondsToSelector:@selector(result:)]) {
         [self.delegate result:result];
     }
 }
@@ -170,7 +172,8 @@ static dispatch_once_t onceToken;
 {
     // Cancel the previous task if it's running.
     if (self.recognitionTask) {
-        [self.recognitionTask cancel];
+        //[self.recognitionTask cancel];
+        [self.recognitionTask finish];
     }
     self.recognitionTask = nil;
     
@@ -202,14 +205,21 @@ static dispatch_once_t onceToken;
     // Keep a reference to the task so that it can be canceled.
     __weak typeof(self)weakSelf = self;
     self.recognitionTask = [self.speechRecognizer recognitionTaskWithRequest:self.recognitionRequest resultHandler:^(SFSpeechRecognitionResult * _Nullable result, NSError * _Nullable error) {
-        
+        __strong typeof(self)strongSelf = self;
         NSLog(@"Recognized voice: %@",result.bestTranscription.formattedString);
         NSLog(@"Recognized error: %@",error);
         NSLog(@"Recognized finishing: %d",weakSelf.recognitionTask.isFinishing);
 
-        [weakSelf resultCallback:result];
+        [strongSelf resultCallback:result];
         
-        [weakSelf resetRecognitionTask];
+        if (error != nil || result.final)
+        {
+            // Stop recognizing speech if there is a problem.
+            [strongSelf stopAudioEngine];
+                        
+            // Re-Strt
+            [strongSelf reStart];
+        }
     }];
 }
 

@@ -9,6 +9,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/*!
+ *  语音合成类。
+ */
 @interface MMSpeechSynthesizer : NSObject
 
 @end

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F60C9B482575CAE60056B9C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F60C9B472575CAE60056B9C6 /* AVFoundation.framework */; };
+		F60C9B4B2575CDD60056B9C6 /* Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F60C9B4A2575CDD60056B9C6 /* Speech.framework */; };
+		F60C9B4E2575D4560056B9C6 /* MMVoiceEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F60C9B4D2575D4560056B9C6 /* MMVoiceEngine.framework */; };
+		F60C9B4F2575D4560056B9C6 /* MMVoiceEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F60C9B4D2575D4560056B9C6 /* MMVoiceEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F611630B255A662100D1453E /* MMVoiceEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F611630A255A662100D1453E /* MMVoiceEngine.framework */; };
 		F6F15C08255A5B2300778245 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F15C07255A5B2300778245 /* AppDelegate.m */; };
 		F6F15C0B255A5B2300778245 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F15C0A255A5B2300778245 /* SceneDelegate.m */; };
@@ -17,7 +21,24 @@
 		F6F15C19255A5B2400778245 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F15C18255A5B2400778245 /* main.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F60C9B502575D4560056B9C6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F60C9B4F2575D4560056B9C6 /* MMVoiceEngine.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		F60C9B472575CAE60056B9C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F60C9B4A2575CDD60056B9C6 /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = System/Library/Frameworks/Speech.framework; sourceTree = SDKROOT; };
+		F60C9B4D2575D4560056B9C6 /* MMVoiceEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MMVoiceEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F611630A255A662100D1453E /* MMVoiceEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMVoiceEngine.framework; path = ../../../SDK/MMVoiceEngine.framework; sourceTree = "<group>"; };
 		F6F15C03255A5B2300778245 /* MMVoiceEngine-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MMVoiceEngine-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6F15C06255A5B2300778245 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -38,6 +59,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F60C9B482575CAE60056B9C6 /* AVFoundation.framework in Frameworks */,
+				F60C9B4E2575D4560056B9C6 /* MMVoiceEngine.framework in Frameworks */,
+				F60C9B4B2575CDD60056B9C6 /* Speech.framework in Frameworks */,
 				F611630B255A662100D1453E /* MMVoiceEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,11 +69,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F60C9B462575CAE60056B9C6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F60C9B4D2575D4560056B9C6 /* MMVoiceEngine.framework */,
+				F60C9B4A2575CDD60056B9C6 /* Speech.framework */,
+				F60C9B472575CAE60056B9C6 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F6F15BFA255A5B2300778245 = {
 			isa = PBXGroup;
 			children = (
 				F6F15C05255A5B2300778245 /* MMVoiceEngine-Demo */,
 				F6F15C04255A5B2300778245 /* Products */,
+				F60C9B462575CAE60056B9C6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +125,7 @@
 				F6F15BFF255A5B2300778245 /* Sources */,
 				F6F15C00255A5B2300778245 /* Frameworks */,
 				F6F15C01255A5B2300778245 /* Resources */,
+				F60C9B502575D4560056B9C6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
