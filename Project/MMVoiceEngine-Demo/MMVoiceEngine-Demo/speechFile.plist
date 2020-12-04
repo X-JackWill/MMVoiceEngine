@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EN</key>
+	<dict>
+		<key>AGAIN</key>
+		<dict>
+			<key>TITLE</key>
+			<string>BEGIN</string>
+		</dict>
+		<key>ALL DONE</key>
+		<dict>
+			<key>TITLE</key>
+			<string>ALL DONE</string>
+		</dict>
+		<key>ALL DOWN</key>
+		<dict>
+			<key>TITLE</key>
+			<string>ALL DONE</string>
+		</dict>
+		<key>BACK</key>
+		<dict>
+			<key>TITLE</key>
+			<string>BACK</string>
+		</dict>
+		<key>BANK</key>
+		<dict>
+			<key>TITLE</key>
+			<string>BACK</string>
+		</dict>
+		<key>BE GONE</key>
+		<dict>
+			<key>TITLE</key>
+			<string>BEGIN</string>
+		</dict>
+		<key>BEGIN</key>
+		<dict>
+			<key>TITLE</key>
+			<string>BEGIN</string>
+		</dict>
+		<key>BGAINNING</key>
+		<dict>
+			<key>TITLE</key>
+			<string>BEGIN</string>
+		</dict>
+		<key>BOTTLE</key>
+		<dict>
+			<key>TITLE</key>
+			<string>BOTTLE</string>
+		</dict>
+		<key>BOTTLES</key>
+		<dict>
+			<key>TITLE</key>
+			<string>BOTTLES</string>
+		</dict>
+		<key>CASE</key>
+		<dict>
+			<key>TITLE</key>
+			<string>CASE</string>
+		</dict>
+		<key>CASES</key>
+		<dict>
+			<key>TITLE</key>
+			<string>CASES</string>
+		</dict>
+		<key>CHANGE</key>
+		<dict>
+			<key>TITLE</key>
+			<string>CHANGE</string>
+		</dict>
+		<key>EIGHT</key>
+		<dict>
+			<key>TITLE</key>
+			<string>8</string>
+		</dict>
+		<key>FIVE</key>
+		<dict>
+			<key>TITLE</key>
+			<string>5</string>
+		</dict>
+		<key>FLOOR</key>
+		<dict>
+			<key>TITLE</key>
+			<string>4</string>
+		</dict>
+		<key>FOR</key>
+		<dict>
+			<key>TITLE</key>
+			<string>4</string>
+		</dict>
+		<key>FOUR</key>
+		<dict>
+			<key>TITLE</key>
+			<string>4</string>
+		</dict>
+		<key>KISS</key>
+		<dict>
+			<key>TITLE</key>
+			<string>CASE</string>
+		</dict>
+		<key>KISSES</key>
+		<dict>
+			<key>TITLE</key>
+			<string>CASES</string>
+		</dict>
+		<key>NINE</key>
+		<dict>
+			<key>TITLE</key>
+			<string>9</string>
+		</dict>
+		<key>OH DAMN</key>
+		<dict>
+			<key>TITLE</key>
+			<string>ALL DONE</string>
+		</dict>
+		<key>OH DARN</key>
+		<dict>
+			<key>TITLE</key>
+			<string>ALL DONE</string>
+		</dict>
+		<key>OH THAT</key>
+		<dict>
+			<key>TITLE</key>
+			<string>ALL DONE</string>
+		</dict>
+		<key>ONE</key>
+		<dict>
+			<key>TITLE</key>
+			<string>1</string>
+		</dict>
+		<key>QUANTITY</key>
+		<dict>
+			<key>TITLE</key>
+			<string>QUANTITY</string>
+		</dict>
+		<key>SAY AGAIN</key>
+		<dict>
+			<key>TITLE</key>
+			<string>SAY AGAIN</string>
+		</dict>
+		<key>SEE YOU AGAIN</key>
+		<dict>
+			<key>TITLE</key>
+			<string>SAY AGAIN</string>
+		</dict>
+		<key>SEE YOU BEGIN</key>
+		<dict>
+			<key>TITLE</key>
+			<string>SAY AGAIN</string>
+		</dict>
+		<key>SEVEN</key>
+		<dict>
+			<key>TITLE</key>
+			<string>7</string>
+		</dict>
+		<key>SIRI</key>
+		<dict>
+			<key>TITLE</key>
+			<string>3</string>
+		</dict>
+		<key>SIX</key>
+		<dict>
+			<key>TITLE</key>
+			<string>6</string>
+		</dict>
+		<key>SWEET</key>
+		<dict>
+			<key>TITLE</key>
+			<string>3</string>
+		</dict>
+		<key>THREE</key>
+		<dict>
+			<key>TITLE</key>
+			<string>3</string>
+		</dict>
+		<key>TO</key>
+		<dict>
+			<key>TITLE</key>
+			<string>2</string>
+		</dict>
+		<key>TOO</key>
+		<dict>
+			<key>TITLE</key>
+			<string>2</string>
+		</dict>
+		<key>TURE</key>
+		<dict>
+			<key>TITLE</key>
+			<string>2</string>
+		</dict>
+		<key>TWO</key>
+		<dict>
+			<key>TITLE</key>
+			<string>2</string>
+		</dict>
+		<key>ZERO</key>
+		<dict>
+			<key>TITLE</key>
+			<string>0</string>
+		</dict>
+		<key>CALL DAD</key>
+		<dict>
+			<key>TITLE</key>
+			<string>ALL DONE</string>
+		</dict>
+		<key>NEXT</key>
+		<dict>
+			<key>TITLE</key>
+			<string>ALL DONE</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

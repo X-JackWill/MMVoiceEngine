@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)result:(SFSpeechRecognitionResult * _Nullable)result;
 
 /*!
- *  音量变化回调<
+ *  音量变化回调
  *  在录音过程中，回调音频的音量。
  *
  *  @param volume 音量，范围从

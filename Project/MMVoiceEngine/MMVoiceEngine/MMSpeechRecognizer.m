@@ -172,7 +172,7 @@ static dispatch_once_t onceToken;
 {
     // Cancel the previous task if it's running.
     if (self.recognitionTask) {
-        //[self.recognitionTask cancel];
+        //[self.recognitionTask cancel]; // Will cause the system error and memory problems.
         [self.recognitionTask finish];
     }
     self.recognitionTask = nil;

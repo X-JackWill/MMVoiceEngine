@@ -21,23 +21,7 @@
     [super viewDidLayoutSubviews];
     
     self.startBtn.frame = CGRectMake(10, CGRectGetHeight(self.view.frame)-40-10, CGRectGetWidth(self.view.frame)-20, 40);
-    self.textView.frame = CGRectMake(10, 20, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame)*0.5-70);
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    self.startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.startBtn setTitle:@"Start Recording" forState:UIControlStateNormal];
-    [self.startBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [self.startBtn addTarget:self action:@selector(startBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.startBtn];
-    
-    self.textView = [[UITextView alloc] init];
-    self.textView.textColor = [UIColor whiteColor];
-    self.textView.backgroundColor = [UIColor darkGrayColor];
-    [self.view addSubview:self.textView];
+    self.textView.frame = CGRectMake(10, 64, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame)*0.5-64);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -65,6 +49,39 @@
     }];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    self.startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.startBtn setTitle:@"Start Recording" forState:UIControlStateNormal];
+    [self.startBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.startBtn addTarget:self action:@selector(startBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.startBtn];
+    
+    self.textView = [[UITextView alloc] init];
+    self.textView.textColor = [UIColor darkGrayColor];
+    self.textView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.textView];
+    
+    
+    NSString *speechFilePath = [[NSBundle mainBundle] pathForResource:@"speechFile" ofType:@"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:speechFilePath][@"EN"];
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - event
 
 - (void)startBtnClick:(UIButton *)sender
 {
@@ -81,10 +98,6 @@
 
 #pragma mark - MMSpeechRecognizerDelegate
 
-/*!
- *  开始录音回调
- *
- */
 - (void)onStart
 {
     NSLog(@"%s",__func__);
@@ -93,10 +106,6 @@
     [self.startBtn setTitle:@"Stop Recording" forState:UIControlStateNormal];
 }
 
-/*!
- *
- *
- */
 - (void)onStop:(NSError *)error
 {
     NSLog(@"%s",__func__);
@@ -105,14 +114,13 @@
     [self.startBtn setTitle:@"Start Recording" forState:UIControlStateNormal];
 }
 
-/*!
- *
- *
- */
 - (void)result:(SFSpeechRecognitionResult * _Nullable)result
 {
     NSLog(@"%s",__func__);
     self.textView.text = result.bestTranscription.formattedString;
 }
+
+
+
 
 @end

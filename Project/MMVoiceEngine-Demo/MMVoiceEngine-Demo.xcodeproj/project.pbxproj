@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F60731232576240B008FC91C /* speechFile.plist in Resources */ = {isa = PBXBuildFile; fileRef = F60731222576240B008FC91C /* speechFile.plist */; };
 		F60C9B482575CAE60056B9C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F60C9B472575CAE60056B9C6 /* AVFoundation.framework */; };
 		F60C9B4B2575CDD60056B9C6 /* Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F60C9B4A2575CDD60056B9C6 /* Speech.framework */; };
 		F60C9B4E2575D4560056B9C6 /* MMVoiceEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F60C9B4D2575D4560056B9C6 /* MMVoiceEngine.framework */; };
@@ -36,6 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F60731222576240B008FC91C /* speechFile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = speechFile.plist; sourceTree = "<group>"; };
 		F60C9B472575CAE60056B9C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		F60C9B4A2575CDD60056B9C6 /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = System/Library/Frameworks/Speech.framework; sourceTree = SDKROOT; };
 		F60C9B4D2575D4560056B9C6 /* MMVoiceEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MMVoiceEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +108,7 @@
 				F6F15C0C255A5B2300778245 /* ViewController.h */,
 				F6F15C0D255A5B2300778245 /* ViewController.m */,
 				F6F15C0F255A5B2300778245 /* Main.storyboard */,
+				F60731222576240B008FC91C /* speechFile.plist */,
 				F6F15C12255A5B2400778245 /* Assets.xcassets */,
 				F6F15C14255A5B2400778245 /* LaunchScreen.storyboard */,
 				F6F15C17255A5B2400778245 /* Info.plist */,
@@ -174,6 +177,7 @@
 			files = (
 				F6F15C16255A5B2400778245 /* LaunchScreen.storyboard in Resources */,
 				F6F15C13255A5B2400778245 /* Assets.xcassets in Resources */,
+				F60731232576240B008FC91C /* speechFile.plist in Resources */,
 				F6F15C11255A5B2300778245 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
