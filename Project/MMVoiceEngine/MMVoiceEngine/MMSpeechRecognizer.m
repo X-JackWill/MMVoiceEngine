@@ -9,6 +9,7 @@
 #import "MMSpeechRecognizerConfig.h"
 #import <AVFoundation/AVFoundation.h>
 #import "MMSpeechRecognizerDelegate.h"
+#import <UIKit/UIKit.h>
 
 @interface MMSpeechRecognizer ()<SFSpeechRecognizerDelegate>
 
@@ -25,9 +26,17 @@
 static MMSpeechRecognizer *_sharedInstance = nil;
 static dispatch_once_t onceToken;
 
+- (void)dealloc {
+    // Remove monitor
+    [self removeMonitor];
+}
+
 + (instancetype)sharedInstance {
     dispatch_once(&onceToken, ^{
+        // Init
         _sharedInstance = [[MMSpeechRecognizer alloc] init];
+        // Add monitor
+        [_sharedInstance addMonitor];
     });
     return _sharedInstance;
 }
@@ -221,6 +230,29 @@ static dispatch_once_t onceToken;
             [strongSelf reStart];
         }
     }];
+}
+
+#pragma mark - Monitor
+
+- (void)addMonitor
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+}
+
+- (void)removeMonitor
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)appDidBecomeActive
+{
+    //[self startAudioEngine];
+}
+
+- (void)appDidEnterBackground
+{
+    //[self stopAudioEngine];
 }
 
 #pragma mark - get
