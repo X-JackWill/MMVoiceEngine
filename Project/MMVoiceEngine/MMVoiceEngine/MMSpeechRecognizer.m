@@ -19,6 +19,8 @@
 @property (nonatomic, strong) SFSpeechRecognitionTask *recognitionTask;
 @property (nonatomic, strong) AVAudioEngine *audioEngine;
 
+@property (nonatomic, assign) BOOL started;
+
 @end
 
 @implementation MMSpeechRecognizer
@@ -159,6 +161,7 @@ static dispatch_once_t onceToken;
     if ([self.delegate respondsToSelector:@selector(onStart)]) {
         [self.delegate onStart];
     }
+    self.started = YES;
 }
 
 - (void)stopCallback:(NSError *)error
@@ -166,6 +169,7 @@ static dispatch_once_t onceToken;
     if ([self.delegate respondsToSelector:@selector(onStop:)]) {
         [self.delegate onStop:error];
     }
+    self.started = NO;
 }
 
 - (void)resultCallback:(SFSpeechRecognitionResult * _Nullable)result
@@ -247,12 +251,16 @@ static dispatch_once_t onceToken;
 
 - (void)appDidBecomeActive
 {
-    //[self startAudioEngine];
+    if (self.started) {
+        [self startAudioEngine];
+    }
 }
 
 - (void)appDidEnterBackground
 {
-    //[self stopAudioEngine];
+    if (self.started) {
+        [self stopAudioEngine];
+    }
 }
 
 #pragma mark - get
