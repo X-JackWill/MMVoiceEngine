@@ -22,4 +22,11 @@
     return [[MMSpeechRecognizerConfig alloc] init];
 }
 
+- (instancetype)initWithLocale:(NSLocale *)locale {
+    if (self = [super init]) {
+        self.locale = locale;
+    }
+    return self;
+}
+
 @end

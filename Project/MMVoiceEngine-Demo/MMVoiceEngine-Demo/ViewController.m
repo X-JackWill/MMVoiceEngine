@@ -62,11 +62,13 @@
     self.textView = [[UITextView alloc] init];
     self.textView.textColor = [UIColor darkGrayColor];
     self.textView.backgroundColor = [UIColor whiteColor];
+    self.textView.userInteractionEnabled = NO;
     [self.view addSubview:self.textView];
     
     
     NSString *speechFilePath = [[NSBundle mainBundle] pathForResource:@"speechFile" ofType:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:speechFilePath][@"EN"];
+    
     
 }
 
@@ -86,12 +88,15 @@
 - (void)startBtnClick:(UIButton *)sender
 {
     sender.selected = !sender.selected;
-    
-    if (sender.selected) {
+    if (sender.selected)
+    {
+        MMSpeechRecognizerConfig *config = [[MMSpeechRecognizerConfig alloc] initWithLocale:[NSLocale localeWithLocaleIdentifier:@"es"]];
+        [[MMSpeechRecognizer sharedInstance] setConfig:config];
         [MMSpeechRecognizer sharedInstance].delegate = self;
         [[MMSpeechRecognizer sharedInstance] start];
     }
-    else {
+    else
+    {
         [[MMSpeechRecognizer sharedInstance] stop];
     }
 }
@@ -101,7 +106,6 @@
 - (void)onStart
 {
     NSLog(@"%s",__func__);
-    
     self.startBtn.enabled = YES;
     [self.startBtn setTitle:@"Stop Recording" forState:UIControlStateNormal];
 }
@@ -109,7 +113,6 @@
 - (void)onStop:(NSError *)error
 {
     NSLog(@"%s",__func__);
-    
     self.startBtn.enabled = YES;
     [self.startBtn setTitle:@"Start Recording" forState:UIControlStateNormal];
 }
@@ -118,6 +121,7 @@
 {
     NSLog(@"%s",__func__);
     self.textView.text = result.bestTranscription.formattedString;
+    NSLog(@"bestTranscription: %@",result.bestTranscription.formattedString);
 }
 
 

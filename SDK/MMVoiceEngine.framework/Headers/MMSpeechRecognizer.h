@@ -9,17 +9,46 @@
 #import <Speech/Speech.h>
 
 @class MMSpeechRecognizerConfig;
-@protocol MMSpeechRecognizerDelegate;
 
 NS_ASSUME_NONNULL_BEGIN
+
+@protocol MMSpeechRecognizerDelegate <NSObject>
+
+@optional
+
+/*!
+ *  开始录音回调
+ *
+ */
+- (void)onStart;
+
+/*!
+ *
+ *
+ */
+- (void)onStop:(NSError *)error;
+
+/*!
+ *
+ *
+ */
+- (void)result:(SFSpeechRecognitionResult * _Nullable)result;
+
+/*!
+ *  音量变化回调
+ *  在录音过程中，回调音频的音量。
+ *
+ *  @param volume 音量，范围从
+ */
+- (void)onVolumeChanged:(int)volume;
+
+@end
 
 /*!
  *  语音识别类，是一个单例对象。
  */
 @interface MMSpeechRecognizer : NSObject
-{
-    MMSpeechRecognizerConfig *_config;
-}
+
 /*!
  *  返回单例对象
  */
@@ -33,12 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
 *  语音识别参数设置
 */
-- (void)setConfig:(MMSpeechRecognizerConfig *)config;
-
-/*!
-*  语音识别参数获取
-*/
-- (MMSpeechRecognizerConfig *)config;
+@property (nonatomic, strong) MMSpeechRecognizerConfig *config;
 
 /*!
  *  开始语音识别

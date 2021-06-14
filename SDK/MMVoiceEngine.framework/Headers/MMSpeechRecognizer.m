@@ -8,13 +8,11 @@
 #import "MMSpeechRecognizer.h"
 #import "MMSpeechRecognizerConfig.h"
 #import <AVFoundation/AVFoundation.h>
-#import "MMSpeechRecognizerDelegate.h"
 #import <UIKit/UIKit.h>
 
 @interface MMSpeechRecognizer ()<SFSpeechRecognizerDelegate>
 
 @property (nonatomic, strong) SFSpeechRecognizer *speechRecognizer;
-@property (nonatomic, strong) MMSpeechRecognizerConfig *config;
 @property (nonatomic, strong) SFSpeechAudioBufferRecognitionRequest *recognitionRequest;
 @property (nonatomic, strong) SFSpeechRecognitionTask *recognitionTask;
 @property (nonatomic, strong) AVAudioEngine *audioEngine;
@@ -49,14 +47,9 @@ static dispatch_once_t onceToken;
 }
 
 - (void)setConfig:(MMSpeechRecognizerConfig *)config {
-    _config = config;
-}
-
-- (MMSpeechRecognizerConfig *)config {
     if (!_config) {
-        _config = [[MMSpeechRecognizerConfig alloc] init];
+        _config = config;
     }
-    return _config;
 }
 
 // Start. Private function.
@@ -218,11 +211,11 @@ static dispatch_once_t onceToken;
     // Keep a reference to the task so that it can be canceled.
     __weak typeof(self)weakSelf = self;
     self.recognitionTask = [self.speechRecognizer recognitionTaskWithRequest:self.recognitionRequest resultHandler:^(SFSpeechRecognitionResult * _Nullable result, NSError * _Nullable error) {
-        __strong typeof(self)strongSelf = self;
-        NSLog(@"Recognized voice: %@",result.bestTranscription.formattedString);
-        NSLog(@"Recognized error: %@",error);
-        NSLog(@"Recognized finishing: %d",weakSelf.recognitionTask.isFinishing);
-
+        __strong typeof(self)strongSelf = weakSelf;
+        //NSLog(@"Recognized voice: %@",result.bestTranscription.formattedString);
+        //NSLog(@"Recognized error: %@",error);
+        //NSLog(@"Recognized finishing: %d",weakSelf.recognitionTask.isFinishing);
+        
         [strongSelf resultCallback:result];
         
         if (error != nil || result.final)
@@ -267,6 +260,9 @@ static dispatch_once_t onceToken;
 
 - (SFSpeechRecognizer *)speechRecognizer {
     if (!_speechRecognizer) {
+        if (!_config) {
+            _config = [MMSpeechRecognizerConfig defaultConfig];
+        }
         _speechRecognizer = [[SFSpeechRecognizer alloc] initWithLocale:self.config.locale];
         _speechRecognizer.delegate = self;
     }

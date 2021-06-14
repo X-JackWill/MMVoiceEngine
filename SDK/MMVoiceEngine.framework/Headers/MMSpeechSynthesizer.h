@@ -14,6 +14,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface MMSpeechSynthesizer : NSObject
 
+/*!
+ *  语音合成单例对象
+ */
++ (instancetype)sharedInstance;
+
+/*!
+ *  销毁单例对象
+ */
+- (void)destroy;
+
 @end
 
 NS_ASSUME_NONNULL_END

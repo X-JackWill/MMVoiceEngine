@@ -14,5 +14,6 @@ FOUNDATION_EXPORT double MMVoiceEngineVersionNumber;
 FOUNDATION_EXPORT const unsigned char MMVoiceEngineVersionString[];
 
 #import <MMVoiceEngine/MMSpeechRecognizer.h>
+#import <MMVoiceEngine/MMSpeechRecognizerConfig.h>
 #import <MMVoiceEngine/MMSpeechSynthesizer.h>
-#import <MMVoiceEngine/MMSpeechRecognizerDelegate.h>
+

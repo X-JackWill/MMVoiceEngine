@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MMSpeechRecognizerConfig : NSObject
 
 + (MMSpeechRecognizerConfig *)defaultConfig;
+- (instancetype)initWithLocale:(NSLocale *)locale;
 
 /*!
  *  语言设置。
