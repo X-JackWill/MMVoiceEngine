@@ -7,11 +7,14 @@
 
 #import "ViewController.h"
 #import <MMVoiceEngine/MMVoiceEngine.h>
+#import "SpeechAnalyzer.h"
 
-@interface ViewController ()<MMSpeechRecognizerDelegate>
+@interface ViewController ()<MMSpeechRecognizerDelegate, SpeechAnalyzerDelegate>
 
 @property (nonatomic, strong) UIButton *startBtn;
 @property (nonatomic, strong) UITextView *textView;
+
+@property (nonatomic, strong) SpeechAnalyzer *speechAnalyzer;
 
 @end
 
@@ -64,33 +67,17 @@
     self.textView.backgroundColor = [UIColor whiteColor];
     self.textView.userInteractionEnabled = NO;
     [self.view addSubview:self.textView];
-    
-    
-    NSString *speechFilePath = [[NSBundle mainBundle] pathForResource:@"speechFile" ofType:@"plist"];
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:speechFilePath][@"EN"];
-    
-    
 }
 
 
-
-
-
-
-
-
-
-
-
-
-#pragma mark - event
+// MARK:- Event
 
 - (void)startBtnClick:(UIButton *)sender
 {
     sender.selected = !sender.selected;
     if (sender.selected)
     {
-        MMSpeechRecognizerConfig *config = [[MMSpeechRecognizerConfig alloc] initWithLocale:[NSLocale localeWithLocaleIdentifier:@"es"]];
+        MMSpeechRecognizerConfig *config = [[MMSpeechRecognizerConfig alloc] initWithLocale:[NSLocale localeWithLocaleIdentifier:@"en"]];
         [[MMSpeechRecognizer sharedInstance] setConfig:config];
         [MMSpeechRecognizer sharedInstance].delegate = self;
         [[MMSpeechRecognizer sharedInstance] start];
@@ -101,7 +88,7 @@
     }
 }
 
-#pragma mark - MMSpeechRecognizerDelegate
+// MARK:- MMSpeechRecognizerDelegate
 
 - (void)onStart
 {
@@ -119,12 +106,29 @@
 
 - (void)result:(SFSpeechRecognitionResult * _Nullable)result
 {
-    NSLog(@"%s",__func__);
-    self.textView.text = result.bestTranscription.formattedString;
-    NSLog(@"bestTranscription: %@",result.bestTranscription.formattedString);
+    [self.speechAnalyzer recognize:result];
 }
 
 
+// MARK:- SpeechAnalyzerDelegate
+
+- (void)speechAnalyzer:(SpeechAnalyzer *)analyzer recognizedCommand:(NSString *)command
+{
+    NSLog(@"recognizedCommand: %@",command);
+    NSLog(@"%@",[NSThread currentThread]);
+    self.textView.text = command;
+}
+
+
+// MARK:- lazy load
+
+- (SpeechAnalyzer *)speechAnalyzer {
+    if (!_speechAnalyzer) {
+        _speechAnalyzer = [[SpeechAnalyzer alloc] init];
+        _speechAnalyzer.delegate = self;
+    }
+    return _speechAnalyzer;
+}
 
 
 @end

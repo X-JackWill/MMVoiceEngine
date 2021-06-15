@@ -17,7 +17,7 @@
 @property (nonatomic, strong) SFSpeechRecognitionTask *recognitionTask;
 @property (nonatomic, strong) AVAudioEngine *audioEngine;
 
-@property (nonatomic, assign) BOOL started;
+@property (nonatomic, assign) BOOL starting;
 
 @end
 
@@ -122,6 +122,7 @@ static dispatch_once_t onceToken;
 - (void)stop
 {
     [self stopAudioEngine];
+    
     [self stopCallback:nil];
 }
 
@@ -154,7 +155,7 @@ static dispatch_once_t onceToken;
     if ([self.delegate respondsToSelector:@selector(onStart)]) {
         [self.delegate onStart];
     }
-    self.started = YES;
+    self.starting = YES;
 }
 
 - (void)stopCallback:(NSError *)error
@@ -162,7 +163,7 @@ static dispatch_once_t onceToken;
     if ([self.delegate respondsToSelector:@selector(onStop:)]) {
         [self.delegate onStop:error];
     }
-    self.started = NO;
+    self.starting = NO;
 }
 
 - (void)resultCallback:(SFSpeechRecognitionResult * _Nullable)result
@@ -224,7 +225,12 @@ static dispatch_once_t onceToken;
             [strongSelf stopAudioEngine];
                         
             // Re-Strt
-            [strongSelf reStart];
+            // [Utility] +[AFAggregator logDictationFailedWithError:] Error Domain=kAFAssistantErrorDomain Code=209 "(null)"
+            // [Utility] +[AFAggregator logDictationFailedWithError:] Error Domain=kAFAssistantErrorDomain Code=203 "SessionId=com.siri.cortex.ace.speech.session.event.SpeechSessionId@599be0be, Message=No audio data received." UserInfo={NSLocalizedDescription=SessionId=com.siri.cortex.ace.speech.session.event.SpeechSessionId@599be0be, Message=No audio data received., NSUnderlyingError=0x600002630090 {Error Domain=SiriSpeechErrorDomain Code=102 "(null)"}}
+            //[strongSelf reStart];
+            
+            strongSelf.speechRecognizer = nil;
+            [strongSelf performSelector:@selector(reStart) withObject:nil afterDelay:1];
         }
     }];
 }
@@ -244,14 +250,14 @@ static dispatch_once_t onceToken;
 
 - (void)appDidBecomeActive
 {
-    if (self.started) {
+    if (self.starting) {
         [self startAudioEngine];
     }
 }
 
 - (void)appDidEnterBackground
 {
-    if (self.started) {
+    if (self.starting) {
         [self stopAudioEngine];
     }
 }

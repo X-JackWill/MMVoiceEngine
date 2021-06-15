@@ -13,6 +13,7 @@
 		F60C9B4E2575D4560056B9C6 /* MMVoiceEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F60C9B4D2575D4560056B9C6 /* MMVoiceEngine.framework */; };
 		F60C9B4F2575D4560056B9C6 /* MMVoiceEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F60C9B4D2575D4560056B9C6 /* MMVoiceEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F611630B255A662100D1453E /* MMVoiceEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F611630A255A662100D1453E /* MMVoiceEngine.framework */; };
+		F6687CE426782DB200B70079 /* SpeechAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = F6687CE326782DB200B70079 /* SpeechAnalyzer.m */; };
 		F6F15C08255A5B2300778245 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F15C07255A5B2300778245 /* AppDelegate.m */; };
 		F6F15C0B255A5B2300778245 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F15C0A255A5B2300778245 /* SceneDelegate.m */; };
 		F6F15C0E255A5B2300778245 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F15C0D255A5B2300778245 /* ViewController.m */; };
@@ -42,6 +43,8 @@
 		F60C9B4A2575CDD60056B9C6 /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = System/Library/Frameworks/Speech.framework; sourceTree = SDKROOT; };
 		F60C9B4D2575D4560056B9C6 /* MMVoiceEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MMVoiceEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F611630A255A662100D1453E /* MMVoiceEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMVoiceEngine.framework; path = ../../../SDK/MMVoiceEngine.framework; sourceTree = "<group>"; };
+		F6687CE226782DB200B70079 /* SpeechAnalyzer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpeechAnalyzer.h; sourceTree = "<group>"; };
+		F6687CE326782DB200B70079 /* SpeechAnalyzer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpeechAnalyzer.m; sourceTree = "<group>"; };
 		F6F15C03255A5B2300778245 /* MMVoiceEngine-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MMVoiceEngine-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6F15C06255A5B2300778245 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F6F15C07255A5B2300778245 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 				F6F15C0A255A5B2300778245 /* SceneDelegate.m */,
 				F6F15C0C255A5B2300778245 /* ViewController.h */,
 				F6F15C0D255A5B2300778245 /* ViewController.m */,
+				F6687CE226782DB200B70079 /* SpeechAnalyzer.h */,
+				F6687CE326782DB200B70079 /* SpeechAnalyzer.m */,
 				F6F15C0F255A5B2300778245 /* Main.storyboard */,
 				F60731222576240B008FC91C /* speechFile.plist */,
 				F6F15C12255A5B2400778245 /* Assets.xcassets */,
@@ -190,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6F15C0E255A5B2300778245 /* ViewController.m in Sources */,
+				F6687CE426782DB200B70079 /* SpeechAnalyzer.m in Sources */,
 				F6F15C08255A5B2300778245 /* AppDelegate.m in Sources */,
 				F6F15C19255A5B2400778245 /* main.m in Sources */,
 				F6F15C0B255A5B2300778245 /* SceneDelegate.m in Sources */,
