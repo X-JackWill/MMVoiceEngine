@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString *const AppViewControllerRefreshNotificationName;
+
 @interface ViewController : UIViewController
 
 

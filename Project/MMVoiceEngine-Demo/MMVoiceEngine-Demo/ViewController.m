@@ -9,6 +9,8 @@
 #import <MMVoiceEngine/MMVoiceEngine.h>
 #import "SpeechAnalyzer.h"
 
+NSString *const AppViewControllerRefreshNotificationName = @"AppViewControllerRefreshNotificationName";
+
 @interface ViewController ()<MMSpeechRecognizerDelegate, SpeechAnalyzerDelegate>
 
 @property (nonatomic, strong) UIButton *startBtn;
@@ -52,9 +54,16 @@
     }];
 }
 
+- (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AppViewControllerRefreshNotificationName object:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appRefreshNoti:) name:AppViewControllerRefreshNotificationName object:nil];
     
     self.startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.startBtn setTitle:@"Start Recording" forState:UIControlStateNormal];
@@ -69,6 +78,13 @@
     [self.view addSubview:self.textView];
 }
 
+- (void)appRefreshNoti:(id)sender {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIColor *color = [UIColor colorWithRed:(arc4random() % 256 / 255.0) green:(arc4random() % 256 / 255.0) blue:(arc4random() % 256 / 255.0) alpha:1.0];
+        self.view.backgroundColor = color;
+    });
+}
 
 // MARK:- Event
 
@@ -115,7 +131,6 @@
 - (void)speechAnalyzer:(SpeechAnalyzer *)analyzer recognizedCommand:(NSString *)command
 {
     NSLog(@"recognizedCommand: %@",command);
-    NSLog(@"%@",[NSThread currentThread]);
     self.textView.text = command;
 }
 
@@ -129,6 +144,5 @@
     }
     return _speechAnalyzer;
 }
-
 
 @end
