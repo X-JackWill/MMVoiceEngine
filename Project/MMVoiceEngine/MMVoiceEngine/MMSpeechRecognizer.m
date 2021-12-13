@@ -17,7 +17,7 @@
 @property (nonatomic, strong) SFSpeechRecognitionTask *recognitionTask;
 @property (nonatomic, strong) AVAudioEngine *audioEngine;
 
-@property (nonatomic, assign) BOOL starting;
+@property (nonatomic, assign) BOOL isWorking;
 
 @end
 
@@ -52,9 +52,35 @@ static dispatch_once_t onceToken;
     }
 }
 
-// Start. Private function.
-- (void)reStart
+#pragma mark - public
+
+- (void)start
 {
+    self.isWorking = YES;
+    
+    [self startWork];
+}
+
+- (void)stop
+{
+    self.isWorking = NO;
+    
+    [self stopWork];
+}
+
+#pragma mark - private
+
+- (void)stopWork
+{
+    [self stopAudioEngine];
+    
+    [self stopCallback:nil];
+}
+
+- (void)startWork
+{
+    [self startCallback];
+    
     // Checking the authorization Status
     [MMSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
         if (status == SFSpeechRecognizerAuthorizationStatusAuthorized)
@@ -69,19 +95,12 @@ static dispatch_once_t onceToken;
     }];
 }
 
-// Start event. Public function.
-- (void)start
-{
-    [self startCallback];
-    
-    [self reStart];
-}
-
 // Stop audioEngine. Private function.
 - (void)stopAudioEngine
 {
     if (self.audioEngine && self.audioEngine.isRunning) {
         [self.audioEngine stop];
+        [self.audioEngine reset];
         [self.audioEngine.inputNode removeTapOnBus:0];
         [self.recognitionRequest endAudio];
     }
@@ -118,14 +137,6 @@ static dispatch_once_t onceToken;
     [self stopCallback:error];
 }
 
-// Stop event. Public function.
-- (void)stop
-{
-    [self stopAudioEngine];
-    
-    [self stopCallback:nil];
-}
-
 // Authorization
 + (SFSpeechRecognizerAuthorizationStatus)authorizationStatus
 {
@@ -155,7 +166,6 @@ static dispatch_once_t onceToken;
     if ([self.delegate respondsToSelector:@selector(onStart)]) {
         [self.delegate onStart];
     }
-    self.starting = YES;
 }
 
 - (void)stopCallback:(NSError *)error
@@ -163,7 +173,6 @@ static dispatch_once_t onceToken;
     if ([self.delegate respondsToSelector:@selector(onStop:)]) {
         [self.delegate onStop:error];
     }
-    self.starting = NO;
 }
 
 - (void)resultCallback:(SFSpeechRecognitionResult * _Nullable)result
@@ -186,7 +195,10 @@ static dispatch_once_t onceToken;
     
     // Configure the audio session for the app.
     NSError *error = nil;
-    [AVAudioSession.sharedInstance setCategory:AVAudioSessionCategoryRecord withOptions:AVAudioSessionCategoryOptionDuckOthers error:&error];
+    if (AVAudioSession.sharedInstance.categoryOptions != (AVAudioSessionCategoryOptionMixWithOthers|AVAudioSessionCategoryOptionDefaultToSpeaker|AVAudioSessionCategoryOptionAllowBluetooth)) {
+        [AVAudioSession.sharedInstance setCategory:AVAudioSessionCategoryPlayAndRecord mode:AVAudioSessionModeMeasurement options:AVAudioSessionCategoryOptionMixWithOthers|AVAudioSessionCategoryOptionDefaultToSpeaker|AVAudioSessionCategoryOptionAllowBluetooth error:&error];
+    }
+    //[AVAudioSession.sharedInstance setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDuckOthers error:&error];
     if (error)
     {
         [self stopWithError:error];
@@ -211,26 +223,23 @@ static dispatch_once_t onceToken;
     // Create a recognition task for the speech recognition session.
     // Keep a reference to the task so that it can be canceled.
     __weak typeof(self)weakSelf = self;
+    self.speechRecognizer = nil;
     self.recognitionTask = [self.speechRecognizer recognitionTaskWithRequest:self.recognitionRequest resultHandler:^(SFSpeechRecognitionResult * _Nullable result, NSError * _Nullable error) {
         __strong typeof(self)strongSelf = weakSelf;
-        //NSLog(@"Recognized voice: %@",result.bestTranscription.formattedString);
-        //NSLog(@"Recognized error: %@",error);
-        //NSLog(@"Recognized finishing: %d",weakSelf.recognitionTask.isFinishing);
-        
-        [strongSelf resultCallback:result];
-        
-        if (error != nil || result.final)
-        {
-            // Stop recognizing speech if there is a problem.
-            [strongSelf stopAudioEngine];
-                        
-            // Re-Strt
-            // [Utility] +[AFAggregator logDictationFailedWithError:] Error Domain=kAFAssistantErrorDomain Code=209 "(null)"
-            // [Utility] +[AFAggregator logDictationFailedWithError:] Error Domain=kAFAssistantErrorDomain Code=203 "SessionId=com.siri.cortex.ace.speech.session.event.SpeechSessionId@599be0be, Message=No audio data received." UserInfo={NSLocalizedDescription=SessionId=com.siri.cortex.ace.speech.session.event.SpeechSessionId@599be0be, Message=No audio data received., NSUnderlyingError=0x600002630090 {Error Domain=SiriSpeechErrorDomain Code=102 "(null)"}}
-            //[strongSelf reStart];
-            
-            strongSelf.speechRecognizer = nil;
-            [strongSelf performSelector:@selector(reStart) withObject:nil afterDelay:1];
+        if (result != nil) {
+            [strongSelf resultCallback:result];
+        }
+        // 1110 stop
+        // 1700 User denied access to speech recognition
+        if (error.code == 1110 || error.code == 1700) {
+            return;
+        }
+        //Siri and Dictation are disabled
+        if (result.final || error) {
+            NSLog(@"isFinal:%ld \n error:%@",(long)result.isFinal,error.domain);
+            [self stopWork];
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(startWork) object:nil];
+            [self performSelector:@selector(startWork) withObject:nil afterDelay:1];
         }
     }];
 }
@@ -250,15 +259,15 @@ static dispatch_once_t onceToken;
 
 - (void)appDidBecomeActive
 {
-    if (self.starting) {
-        [self startAudioEngine];
+    if (self.isWorking) {
+        [self startWork];
     }
 }
 
 - (void)appDidEnterBackground
 {
-    if (self.starting) {
-        [self stopAudioEngine];
+    if (self.isWorking) {
+        [self stopWork];
     }
 }
 
@@ -296,3 +305,4 @@ static dispatch_once_t onceToken;
 /// 错误码
 // 203/201 本次识别任务完成，未识别到任何语音
 // 216  几次203/201之后报216，报216时recognitionTask.isFinishing=NO。程序再无反应。
+// 1110 stop

@@ -6,6 +6,8 @@
 	<dict>
 		<key>zero</key>
 		<string>0</string>
+		<key>one</key>
+		<string>1</string>
 		<key>two</key>
 		<string>2</string>
 		<key>three</key>
